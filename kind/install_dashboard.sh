@@ -2,7 +2,6 @@
 # sudo install helm -m 0755 /usr/local/bin/helm
 #helm repo remove stable
 
-
 images=(
     kubernetesui/dashboard-api:1.12.0
     kubernetesui/dashboard-web:1.6.2
@@ -12,10 +11,9 @@ images=(
 )
 
 for image in "${images[@]}"; do
-    #docker pull "$image"
+    docker pull "$image"
     kind load docker-image "$image"
 done
-
 
 
 # 开代理
@@ -36,7 +34,7 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dash
 #   https://localhost:8443
 
 kubectl get pod -n kubernetes-dashboard
-
+# 获取token
 kubectl -n kubernetes-dashboard create serviceaccount dashboard-user
 kubectl -n kubernetes-dashboard create token dashboard-user
 echo "打开 ip:8443 输入 token 登陆"
