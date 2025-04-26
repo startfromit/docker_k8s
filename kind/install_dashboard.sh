@@ -34,8 +34,14 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dash
 #   https://localhost:8443
 
 kubectl get pod -n kubernetes-dashboard
-# 选择一：获取token(一个小时有效期)
+
+# 创建service account并添加权限
 kubectl -n kubernetes-dashboard create serviceaccount dashboard-user
+kubectl create clusterrolebinding dashboard-admin \
+  --clusterrole=cluster-admin \
+  --serviceaccount=kubernetes-dashboard:dashboard-user
+
+# 选择一：获取token(一个小时有效期)
 kubectl -n kubernetes-dashboard create token dashboard-user
 echo "打开 ip:8443 输入 token 登陆"
 
