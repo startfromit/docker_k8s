@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment # Pods与ReplicaSets的名称基础
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector: # ReplicaSet 寻找要管理的 pod 的依据. immutable
+    matchLabels:
+      app: nginx
+  template: # PodTemplate
+    metadata:
+      labels:
+        app: nginx # pod 的标签
+    spec:
+      containers:
+      - name: nginx # 容器的名称
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
