@@ -15,12 +15,13 @@ for image in "${images[@]}"; do
     kind load docker-image "$image"
 done
 
+NAMESPACE="kubernetes-dashboard"
 
 # 开代理
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 helm repo update
 # 7.12.0
-helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
+helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace ${NAMESPACE}
 # Congratulations! You have just installed Kubernetes Dashboard in your cluster.
 
 # To access Dashboard run:
@@ -33,16 +34,16 @@ helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dash
 # Dashboard will be available at:
 #   https://localhost:8443
 
-kubectl get pod -n kubernetes-dashboard
+kubectl get pod -n ${NAMESPACE}
 
 # 创建service account并添加权限
-kubectl -n kubernetes-dashboard create serviceaccount dashboard-user
+kubectl -n ${NAMESPACE} create serviceaccount dashboard-user
 kubectl create clusterrolebinding dashboard-admin \
   --clusterrole=cluster-admin \
-  --serviceaccount=kubernetes-dashboard:dashboard-user
+  --serviceaccount=${NAMESPACE}:dashboard-user
 
 # 选择一：获取token(一个小时有效期)
-kubectl -n kubernetes-dashboard create token dashboard-user
+kubectl -n ${NAMESPACE} create token dashboard-user
 echo "打开 ip:8443 输入 token 登陆"
 
 # 选择二：永久的token
@@ -56,9 +57,9 @@ metadata:
 type: kubernetes.io/service-account-token
 EOF
 
-kubectl apply -f sa-secret.yaml -n kubernetes-dashboard
-kubectl get secret dashboard-user-token -n kubernetes-dashboard -o jsonpath='{.data.token}' | base64 -d
+kubectl apply -f sa-secret.yaml -n ${NAMESPACE}
+kubectl get secret dashboard-user-token -n ${NAMESPACE} -o jsonpath='{.data.token}' | base64 -d
 
 
 # 阻塞 block
-kubectl -n kubernetes-dashboard port-forward --address 0.0.0.0 svc/kubernetes-dashboard-kong-proxy 8443:443
+kubectl -n ${NAMESPACE} port-forward --address 0.0.0.0 svc/kubernetes-dashboard-kong-proxy 8443:443
