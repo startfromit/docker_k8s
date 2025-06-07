@@ -23,3 +23,5 @@ kubectl get pipelineruns
 kubectl get taskrun
 kubectl describe taskrun hello-goodbye-run-cr2tx-hello
 tkn pipelinerun logs hello-goodbye-run-cr2tx-hello -f
+
+# api <- event listener -> trigger-template -> pipeline-run -> task 1, task 2
