@@ -25112,11 +25112,11 @@ spec:
       serviceAccountName: tekton-pipelines-controller
       containers:
         - name: tekton-pipelines-controller
-          image: ghcr.io/tektoncd/pipeline/controller-10a3e32792f33651396d02b6855a6e36:v1.1.0@sha256:72ba947187317aee83b8b6ba510b17375bede4ce062e366cd0162515e0f7d5f2
+          image: ghcr.nju.edu.cn/tektoncd/pipeline/controller-10a3e32792f33651396d02b6855a6e36:v1.1.0@sha256:72ba947187317aee83b8b6ba510b17375bede4ce062e366cd0162515e0f7d5f2
           args: [
             # These images are built on-demand by `ko resolve` and are replaced
             # by image references by digest.
-            "-entrypoint-image", "ghcr.io/tektoncd/pipeline/entrypoint-bff0a22da108bc2f16c818c97641a296:v1.1.0@sha256:6e7031049f641583d651f3aac0ed58fe682076d05385d0962536d168bac993eb", "-nop-image", "ghcr.io/tektoncd/pipeline/nop-8eac7c133edad5df719dc37b36b62482:v1.1.0@sha256:52f63949cf2e3934dc49481c237be075312d9aee07be155477d2fccddb0c61b6", "-sidecarlogresults-image", "ghcr.io/tektoncd/pipeline/sidecarlogresults-7501c6a20d741631510a448b48ab098f:v1.1.0@sha256:ded822917616eea7365e93b783699297b0f6f85e5588a8cba53e0e9c0eb47080", "-workingdirinit-image", "ghcr.io/tektoncd/pipeline/workingdirinit-0c558922ec6a1b739e550e349f2d5fc1:v1.1.0@sha256:ed8668edf1dfdc8d3c2875da7b5eab315ba8d9008309a33159f736eb97c71841",
+            "-entrypoint-image", "ghcr.nju.edu.cn/tektoncd/pipeline/entrypoint-bff0a22da108bc2f16c818c97641a296:v1.1.0@sha256:6e7031049f641583d651f3aac0ed58fe682076d05385d0962536d168bac993eb", "-nop-image", "ghcr.nju.edu.cn/tektoncd/pipeline/nop-8eac7c133edad5df719dc37b36b62482:v1.1.0@sha256:52f63949cf2e3934dc49481c237be075312d9aee07be155477d2fccddb0c61b6", "-sidecarlogresults-image", "ghcr.nju.edu.cn/tektoncd/pipeline/sidecarlogresults-7501c6a20d741631510a448b48ab098f:v1.1.0@sha256:ded822917616eea7365e93b783699297b0f6f85e5588a8cba53e0e9c0eb47080", "-workingdirinit-image", "ghcr.nju.edu.cn/tektoncd/pipeline/workingdirinit-0c558922ec6a1b739e550e349f2d5fc1:v1.1.0@sha256:ed8668edf1dfdc8d3c2875da7b5eab315ba8d9008309a33159f736eb97c71841",
             # The shell image must allow root in order to create directories and copy files to PVCs.
             # cgr.dev/chainguard/busybox as of April 14 2022
             # image shall not contains tag, so it will be supported on a runtime like cri-o
@@ -25297,7 +25297,7 @@ spec:
       serviceAccountName: tekton-events-controller
       containers:
         - name: tekton-events-controller
-          image: ghcr.io/tektoncd/pipeline/events-a9042f7efb0cbade2a868a1ee5ddd52c:v1.1.0@sha256:5125fa63e96301e06cd09105f2deafd9d0c0023abb898557568dfc15a9f072f9
+          image: ghcr.nju.edu.cn/tektoncd/pipeline/events-a9042f7efb0cbade2a868a1ee5ddd52c:v1.1.0@sha256:5125fa63e96301e06cd09105f2deafd9d0c0023abb898557568dfc15a9f072f9
           args: []
           volumeMounts:
             - name: config-logging
@@ -26032,7 +26032,7 @@ spec:
       serviceAccountName: tekton-pipelines-resolvers
       containers:
         - name: controller
-          image: ghcr.io/tektoncd/pipeline/resolvers-ff86b24f130c42b88983d3c13993056d:v1.1.0@sha256:874a8a2360ccf87aa386a78ef12da2085e97eb290607edfefa9c57864b7abfc5
+          image: ghcr.nju.edu.cn/tektoncd/pipeline/resolvers-ff86b24f130c42b88983d3c13993056d:v1.1.0@sha256:874a8a2360ccf87aa386a78ef12da2085e97eb290607edfefa9c57864b7abfc5
           resources:
             requests:
               cpu: 100m
@@ -26263,7 +26263,7 @@ spec:
         - name: webhook
           # This is the Go import path for the binary that is containerized
           # and substituted here.
-          image: ghcr.io/tektoncd/pipeline/webhook-d4749e605405422fd87700164e31b2d1:v1.1.0@sha256:7622592a883d3ac7c4321f04bcba54c73ce125c23cc971faeeb5700c0f57a0d0
+          image: ghcr.nju.edu.cn/tektoncd/pipeline/webhook-d4749e605405422fd87700164e31b2d1:v1.1.0@sha256:7622592a883d3ac7c4321f04bcba54c73ce125c23cc971faeeb5700c0f57a0d0
           # Resource request required for autoscaler to take any action for a metric
           resources:
             requests:
