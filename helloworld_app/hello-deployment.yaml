@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-there
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: hello-there
+  template:
+    metadata:
+      labels:
+        app: hello-there
+    spec:
+      containers:
+      - image: hello-there:local
+        name: hello-there
+        ports:
+        - containerPort: 80
