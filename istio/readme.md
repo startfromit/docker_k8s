@@ -1,0 +1,1 @@
+全程按照`https://istio.io/latest/docs/setup/getting-started/`操作记录。

@@ -1,11 +1,11 @@
 #!/bin/bash
-
 # 准备
 # (not a git repo) yu@Mars:Downloads $ ls -1
+# kind: 
+# go install sigs.k8s.io/kind@v0.29.0
 # cni-plugins-linux-amd64-v1.7.1.tgz
 # crictl
 # helm-v3.17.3-linux-amd64.tar.gz
-# kind-linux-amd64
 # kubeadm
 # kubectl
 # kubelet
@@ -18,14 +18,14 @@ cat > kind-config.yaml <<EOF
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 networking:
-  apiServerAddress: "192.168.0.104"  # 允许外部访问，不要使用0.0.0.0，helm会无法访问
+  apiServerAddress: "192.168.0.166"  # 允许外部访问，不要使用0.0.0.0，helm会无法访问
   apiServerPort: 6443 # 固定端口
   serviceSubnet: 10.0.0.0/16
 nodes:
   - role: control-plane
   - role: worker
-  - role: worker
-  - role: worker
+  #- role: worker
+  #- role: worker
 kubeadmConfigPatches:
 - |-
   apiVersion: kubeadm.k8s.io/v1beta3
