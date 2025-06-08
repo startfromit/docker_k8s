@@ -39,12 +39,15 @@ kubectl config get-contexts -o name
 argocd cluster add minikube
 
 # 创建应用
-argocd app create guestbook --repo https://gitee.com/travisbikkle/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
-argocd app get guestbook
-argocd app sync guestbook
+# cd ../helloworld_app
+# sh build.sh
+# minikube image load hello-there:local
+argocd app create hello-there --repo https://github.com/startfromit/docker_k8s.git --path helloworld_app --dest-server https://kubernetes.default.svc --dest-namespace default
+argocd app get hello-there
+argocd app sync hello-there
 
 # 在argocd 前端可以修改这个 svc 为 nodeport，也可以通过端口转发
 kubectl get svc -n default
-minikube service guestbook-ui -n default
+minikube service hello-there -n default
 
-kubectl port-forward --address 0.0.0.0 svc/guestbook-ui -n default 8081:80
+kubectl port-forward --address 0.0.0.0 svc/hello-there -n default 8081:80
