@@ -45,8 +45,11 @@ kubectl get pod -n istio-system
 # loki-0                        2/2     Running   0          87s
 # prometheus-689cc795d4-722kl   2/2     Running   0          87s
 
-# 打开 kiali 监控
+# 打开 kiali 等
 istioctl dashboard kiali --address 192.168.0.166 # 本机 ip
+istioctl dashboard grafana --address 192.168.0.166 # 本机 ip
+istioctl dashboard jaeger --address 192.168.0.166 # 本机 ip
+istioctl dashboard prometheus --address 192.168.0.166 # 本机 ip
 # 打开上节的 bookinfo 应用转发
 kubectl port-forward --address 0.0.0.0 svc/bookinfo-gateway-istio 8080:80
 # 并访问一百次
